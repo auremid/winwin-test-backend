@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: auth-api
+  datasource:
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration: ${JWT_EXPIRATION:PT1H}
+  data-api:
+    url: ${DATA_API_URL:http://data-api:8081}
+    internal-token: ${INTERNAL_TOKEN}
+    connect-timeout: ${DATA_API_CONNECT_TIMEOUT:PT2S}
+    read-timeout: ${DATA_API_READ_TIMEOUT:PT5S}
