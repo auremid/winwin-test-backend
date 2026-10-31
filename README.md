@@ -2,23 +2,6 @@
 
 A small two-service Spring Boot backend. `auth-api` registers users, authenticates them with JWTs, calls `data-api` for uppercase transformation, and records successful processing in PostgreSQL.
 
-## Architecture
-
-```text
-client
-  |-- POST /api/auth/* --------> auth-api :8080 ----> PostgreSQL
-  `-- POST /api/process (JWT) --> auth-api :8080
-                                      |
-                                      `-- POST /api/transform
-                                          X-Internal-Token
-                                          data-api :8081
-```
-
-- `auth-api`: Spring Web, Spring Security, OAuth2 Resource Server JWT, Spring Data JPA, Flyway, BCrypt.
-- `data-api`: Spring Web and Bean Validation.
-- `postgres`: PostgreSQL 17 with a persistent Docker volume.
-- Java 21, Maven, Spring Boot 3.5.16, Docker Compose.
-
 ## Prerequisites
 
 - Docker Engine with Docker Compose, or
